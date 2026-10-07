@@ -1,0 +1,13 @@
+Source: sv-iodine
+Section: metapackages
+Priority: optional
+Maintainer: z1rov <fabian@zirov.net>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: sv-iodine
+Architecture: all
+Depends: svent-core, iodine, ${misc:Depends}
+Description: Svent network tool: iodine
+ Installs iodine and registers it in the Svent catalog and menu.

@@ -1,0 +1,8 @@
+#!/usr/bin/make -f
+DESTDIR = $(CURDIR)/debian/sv-armory-network
+%:
+	dh $@
+override_dh_auto_install:
+	install -D -m755 files/armory-network $(DESTDIR)/usr/bin/armory-network
+	install -D -m644 armory-network.list $(DESTDIR)/usr/share/armory/network-manifest.list
+	install -D -m644 catalog.d/armory-network.json $(DESTDIR)/usr/share/svent/catalog.d/armory-network.json

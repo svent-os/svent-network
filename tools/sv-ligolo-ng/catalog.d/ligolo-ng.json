@@ -1,0 +1,1 @@
+{"schema":1,"name":"ligolo-ng","group":"network","description":"Advanced tunneling/pivoting (proxy side, attacker)","packaging":"svent","package":"sv-ligolo-ng","executables":["ligolo-proxy"],"official_source":"https://github.com/nicocha30/ligolo-ng","version_policy":"svent-packaged","functional_test":["ligolo-proxy","--version"],"functional_test_any_exit":true}

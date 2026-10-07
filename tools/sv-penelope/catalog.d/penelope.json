@@ -1,0 +1,1 @@
+{"schema":1,"name":"penelope","group":"network","description":"Advanced shell handler and TTY upgrade (penelope)","packaging":"svent","package":"sv-penelope","executables":["penelope"],"official_source":"https://github.com/brightio/penelope","version_policy":"svent-packaged","functional_test":["penelope","--help"],"functional_test_any_exit":true}

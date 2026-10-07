@@ -1,0 +1,2 @@
+bin/ligolo-proxy usr/bin/
+catalog.d/ligolo-ng.json usr/share/svent/catalog.d/

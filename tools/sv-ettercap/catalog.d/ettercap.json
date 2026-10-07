@@ -1,0 +1,1 @@
+{"schema":1,"name":"ettercap","group":"network","description":"MITM attack suite (text UI)","packaging":"debian","package":"ettercap-text-only","executables":["ettercap"],"official_source":"https://www.ettercap-project.org","version_policy":"follow-debian-testing","functional_test":["ettercap","--version"],"functional_test_any_exit":true}

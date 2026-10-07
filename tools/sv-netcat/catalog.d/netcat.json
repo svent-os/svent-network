@@ -1,0 +1,1 @@
+{"schema":1,"name":"netcat","group":"network","description":"TCP/IP Swiss army knife (OpenBSD netcat)","packaging":"debian","package":"netcat-openbsd","executables":["nc"],"official_source":"https://www.openbsd.org","version_policy":"follow-debian-testing","functional_test":["nc","--version"],"functional_test_any_exit":true}

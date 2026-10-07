@@ -1,0 +1,1 @@
+{"schema":1,"name":"mitmproxy","group":"network","description":"Interactive TLS-capable intercepting proxy","packaging":"svent","package":"sv-mitmproxy","executables":["mitmproxy","mitmdump","mitmweb"],"official_source":"https://mitmproxy.org","version_policy":"svent-packaged","functional_test":["mitmproxy","--version"],"functional_test_any_exit":true}

@@ -1,0 +1,13 @@
+Source: sv-tshark
+Section: metapackages
+Priority: optional
+Maintainer: z1rov <fabian@zirov.net>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: sv-tshark
+Architecture: all
+Depends: svent-core, tshark, ${misc:Depends}
+Description: Svent network tool: tshark
+ Installs tshark and registers it in the Svent catalog and menu.

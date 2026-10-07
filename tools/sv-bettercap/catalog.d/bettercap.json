@@ -1,0 +1,1 @@
+{"schema":1,"name":"bettercap","group":"network","description":"Swiss army knife for network attacks and MITM","packaging":"debian","package":"bettercap","executables":["bettercap"],"official_source":"https://www.bettercap.org","version_policy":"follow-debian-testing","functional_test":["bettercap","--version"],"functional_test_any_exit":true}

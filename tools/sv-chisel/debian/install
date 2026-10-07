@@ -1,0 +1,2 @@
+bin/chisel usr/bin/
+catalog.d/chisel.json usr/share/svent/catalog.d/

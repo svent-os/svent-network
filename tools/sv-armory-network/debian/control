@@ -1,0 +1,14 @@
+Source: sv-armory-network
+Section: metapackages
+Priority: optional
+Maintainer: z1rov <fabian@zirov.net>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+
+Package: sv-armory-network
+Architecture: all
+Depends: svent-core, curl, ca-certificates, unzip, gzip, ${misc:Depends}
+Description: Svent network armory (Windows pivoting binaries downloader)
+ Downloads Windows pivoting/tunneling binaries (chisel.exe, ligolo agent and
+ proxy, netcat, plink, putty) into /usr/share/armory/network for uploading to
+ compromised Windows hosts. Fetched from upstream projects at install time.

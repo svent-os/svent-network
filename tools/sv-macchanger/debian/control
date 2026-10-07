@@ -1,0 +1,13 @@
+Source: sv-macchanger
+Section: metapackages
+Priority: optional
+Maintainer: z1rov <fabian@zirov.net>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: sv-macchanger
+Architecture: all
+Depends: svent-core, macchanger, ${misc:Depends}
+Description: Svent network tool: macchanger
+ Installs macchanger and registers it in the Svent catalog and menu.

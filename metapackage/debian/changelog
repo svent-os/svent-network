@@ -1,0 +1,95 @@
+sv-tools-network (0.1.15) unstable; urgency=medium
+
+  * Add sv-penelope
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:46:29 -0400
+
+sv-tools-network (0.1.14) unstable; urgency=medium
+
+  * Add sv-mitmproxy
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:44:58 -0400
+
+sv-tools-network (0.1.13) unstable; urgency=medium
+
+  * Add sv-pwncat
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:43:07 -0400
+
+sv-tools-network (0.1.12) unstable; urgency=medium
+
+  * Add sv-ligolo-ng
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:42:51 -0400
+
+sv-tools-network (0.1.11) unstable; urgency=medium
+
+  * Add sv-chisel
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:41:37 -0400
+
+sv-tools-network (0.1.10) unstable; urgency=medium
+
+  * Add sv-dsniff
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:41:03 -0400
+
+sv-tools-network (0.1.9) unstable; urgency=medium
+
+  * Add sv-tcpflow
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:40:59 -0400
+
+sv-tools-network (0.1.8) unstable; urgency=medium
+
+  * Add sv-macchanger
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:40:55 -0400
+
+sv-tools-network (0.1.7) unstable; urgency=medium
+
+  * Add sv-iodine
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:40:51 -0400
+
+sv-tools-network (0.1.6) unstable; urgency=medium
+
+  * Add sv-sshuttle
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:40:48 -0400
+
+sv-tools-network (0.1.5) unstable; urgency=medium
+
+  * Add sv-ettercap
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:40:44 -0400
+
+sv-tools-network (0.1.4) unstable; urgency=medium
+
+  * Add sv-bettercap
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:40:40 -0400
+
+sv-tools-network (0.1.3) unstable; urgency=medium
+
+  * Add sv-tshark
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:40:36 -0400
+
+sv-tools-network (0.1.2) unstable; urgency=medium
+
+  * Add sv-tcpdump
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:40:32 -0400
+
+sv-tools-network (0.1.1) unstable; urgency=medium
+
+  * Add sv-socat
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:40:29 -0400
+
+sv-tools-network (0.1.0) unstable; urgency=medium
+
+  * Initial release.
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 22:40:24 -0400

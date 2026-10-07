@@ -1,0 +1,1 @@
+{"schema":1,"name":"pwncat","group":"network","description":"Post-exploitation platform / reverse shell handler","packaging":"svent","package":"sv-pwncat","executables":["pwncat-cs"],"official_source":"https://github.com/calebstewart/pwncat","version_policy":"svent-packaged","functional_test":["pwncat-cs","--version"],"functional_test_any_exit":true}

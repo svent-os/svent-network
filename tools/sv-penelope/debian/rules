@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+PKG = sv-penelope
+PREFIX = /opt/sv-penelope
+DESTDIR = $(CURDIR)/debian/sv-penelope
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+override_dh_auto_build:
+override_dh_auto_test:
+
+override_dh_auto_install:
+	rm -rf $(CURDIR)/.src
+	git clone --depth 1 https://github.com/brightio/penelope $(CURDIR)/.src
+	rm -rf $(CURDIR)/.src/.git
+	mkdir -p $(DESTDIR)$(PREFIX)
+	cp -a $(CURDIR)/.src/. $(DESTDIR)$(PREFIX)/
+	mkdir -p $(DESTDIR)/usr/bin
+	install -D -m755 files/penelope $(DESTDIR)/usr/bin/penelope
+	mkdir -p $(DESTDIR)/usr/share/svent/catalog.d
+	cp catalog.d/penelope.json $(DESTDIR)/usr/share/svent/catalog.d/
+
+override_dh_auto_clean:
+	rm -rf $(CURDIR)/.src $(CURDIR)/.venv

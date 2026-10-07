@@ -1,0 +1,13 @@
+Source: sv-penelope
+Section: net
+Priority: optional
+Maintainer: z1rov <fabian@zirov.net>
+Build-Depends: debhelper-compat (= 13), git, ca-certificates
+Standards-Version: 4.7.0
+
+Package: sv-penelope
+Architecture: all
+Depends: svent-core, python3, ${misc:Depends}
+Description: Svent network tool: penelope
+ Vendored and isolated under /opt/sv-penelope so its dependencies never
+ touch the system packages or other tools.

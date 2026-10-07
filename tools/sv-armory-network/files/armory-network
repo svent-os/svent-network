@@ -1,0 +1,12 @@
+#!/bin/sh
+ROOT=/usr/share/armory/network
+case "$1" in
+  -h|--help) echo "armory-network: lists the Windows pivoting binaries in $ROOT"; exit 0 ;;
+esac
+if [ ! -d "$ROOT" ] || [ -z "$(ls -A "$ROOT" 2>/dev/null)" ]; then
+  echo "Armory not downloaded. Run: sudo apt install --reinstall sv-armory-network" >&2
+  exit 1
+fi
+echo "Svent network armory (Windows pivoting binaries): $ROOT"
+echo
+find "$ROOT" -type f | sort | sed "s|$ROOT/|  |"

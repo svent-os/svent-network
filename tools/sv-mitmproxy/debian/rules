@@ -1,0 +1,35 @@
+#!/usr/bin/make -f
+PKG = sv-mitmproxy
+PREFIX = /opt/sv-mitmproxy
+DESTDIR = $(CURDIR)/debian/sv-mitmproxy
+
+%:
+	dh $@
+
+override_dh_auto_configure:
+override_dh_auto_build:
+override_dh_auto_test:
+
+override_dh_auto_install:
+	rm -rf $(CURDIR)/.venv
+	python3 -m venv $(CURDIR)/.venv
+	$(CURDIR)/.venv/bin/pip install --no-cache-dir --upgrade pip wheel "setuptools<81"
+	$(CURDIR)/.venv/bin/pip install --no-cache-dir mitmproxy
+	mkdir -p $(DESTDIR)$(PREFIX)
+	cp -a $(CURDIR)/.venv/. $(DESTDIR)$(PREFIX)/
+	find $(DESTDIR)$(PREFIX)/bin -type f -exec sed -i "1s|$(CURDIR)/.venv|$(PREFIX)|" {} +
+	sed -i "s|$(CURDIR)/.venv|$(PREFIX)|g" $(DESTDIR)$(PREFIX)/pyvenv.cfg
+	mkdir -p $(DESTDIR)/usr/bin
+	ln -sf $(PREFIX)/bin/mitmproxy $(DESTDIR)/usr/bin/mitmproxy
+	ln -sf $(PREFIX)/bin/mitmdump $(DESTDIR)/usr/bin/mitmdump
+	ln -sf $(PREFIX)/bin/mitmweb $(DESTDIR)/usr/bin/mitmweb
+	mkdir -p $(DESTDIR)/usr/share/svent/catalog.d
+	cp catalog.d/mitmproxy.json $(DESTDIR)/usr/share/svent/catalog.d/
+
+override_dh_strip:
+override_dh_dwz:
+override_dh_shlibdeps:
+	dh_shlibdeps || true
+
+override_dh_auto_clean:
+	rm -rf $(CURDIR)/.venv

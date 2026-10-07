@@ -1,0 +1,1 @@
+{"schema":1,"name":"dsniff","group":"network","description":"Sniffing/MITM toolset (arpspoof, dnsspoof, macof...)","packaging":"debian","package":"dsniff","executables":["dsniff"],"official_source":"https://www.monkey.org/~dugsong/dsniff","version_policy":"follow-debian-testing","functional_test":["dsniff","--version"],"functional_test_any_exit":true}

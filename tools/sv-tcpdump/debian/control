@@ -1,0 +1,13 @@
+Source: sv-tcpdump
+Section: metapackages
+Priority: optional
+Maintainer: z1rov <fabian@zirov.net>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: sv-tcpdump
+Architecture: all
+Depends: svent-core, tcpdump, ${misc:Depends}
+Description: Svent network tool: tcpdump
+ Installs tcpdump and registers it in the Svent catalog and menu.

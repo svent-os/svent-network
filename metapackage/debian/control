@@ -1,0 +1,13 @@
+Source: sv-tools-network
+Section: metapackages
+Priority: optional
+Maintainer: z1rov <fabian@zirov.net>
+Build-Depends: debhelper-compat (= 13)
+Standards-Version: 4.7.0
+Rules-Requires-Root: no
+
+Package: sv-tools-network
+Architecture: all
+Depends: svent-core, sv-netcat, sv-socat, sv-tcpdump, sv-tshark, sv-bettercap, sv-ettercap, sv-sshuttle, sv-iodine, sv-macchanger, sv-tcpflow, sv-dsniff, sv-chisel, sv-ligolo-ng, sv-pwncat, sv-mitmproxy, sv-penelope, ${misc:Depends}
+Description: Svent network tool group
+ Installs every Svent tool in the network category.

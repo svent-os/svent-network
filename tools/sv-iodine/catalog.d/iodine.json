@@ -1,0 +1,1 @@
+{"schema":1,"name":"iodine","group":"network","description":"Tunnel IPv4 data through a DNS server","packaging":"debian","package":"iodine","executables":["iodine"],"official_source":"https://github.com/yarrick/iodine","version_policy":"follow-debian-testing","functional_test":["iodine","--version"],"functional_test_any_exit":true}

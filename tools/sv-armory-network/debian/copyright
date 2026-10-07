@@ -1,0 +1,8 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: sv-armory-network
+
+Files: *
+Copyright: 2026 z1rov <fabian@zirov.net>
+License: Svent-packaging
+ Installer only. Each binary is downloaded from its own upstream project and
+ remains under its own license.

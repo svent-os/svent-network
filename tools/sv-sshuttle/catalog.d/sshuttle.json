@@ -1,0 +1,1 @@
+{"schema":1,"name":"sshuttle","group":"network","description":"Transparent proxy VPN over SSH","packaging":"debian","package":"sshuttle","executables":["sshuttle"],"official_source":"https://github.com/sshuttle/sshuttle","version_policy":"follow-debian-testing","functional_test":["sshuttle","--version"],"functional_test_any_exit":true}

@@ -1,0 +1,1 @@
+{"schema":1,"name":"macchanger","group":"network","description":"MAC address viewer/manipulator","packaging":"debian","package":"macchanger","executables":["macchanger"],"official_source":"https://github.com/alobbs/macchanger","version_policy":"follow-debian-testing","functional_test":["macchanger","--version"],"functional_test_any_exit":true}

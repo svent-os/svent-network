@@ -1,0 +1,1 @@
+{"schema":1,"name":"chisel","group":"network","description":"Fast TCP/UDP tunnel over HTTP with SOCKS","packaging":"svent","package":"sv-chisel","executables":["chisel"],"official_source":"https://github.com/jpillora/chisel","version_policy":"svent-packaged","functional_test":["chisel","--version"],"functional_test_any_exit":true}
