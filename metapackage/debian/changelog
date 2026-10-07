@@ -1,3 +1,9 @@
+sv-tools-network (0.2.0) unstable; urgency=medium
+
+  * Drop pwncat (blocked on Python 3.13); penelope covers shell handling.
+
+ -- z1rov <fabian@zirov.net>  Tue, 06 Oct 2026 23:30:03 -0400
+
 sv-tools-network (0.1.15) unstable; urgency=medium
 
   * Add sv-penelope

@@ -12,21 +12,21 @@ case "$1" in
       mkdir -p "$ROOT/$sub"
       curl -sfL "$url" -o "$ROOT/$sub/$name" && echo "  [+] $sub/$name" || echo "  [!] fail $sub/$name" >&2
     done < "$LIST"
-    # chisel windows (release .gz)
-    cver=$(curl -s https://api.github.com/repos/jpillora/chisel/releases/latest | grep '"tag_name"' | head -1 | cut -d'"' -f4); cver=${cver#v}
-    if [ -n "$cver" ]; then
+    # chisel windows: parsear la URL real del asset (.gz)
+    wurl=$(curl -s https://api.github.com/repos/jpillora/chisel/releases/latest | grep browser_download_url | grep -iE 'windows.*amd64.*\.gz' | head -1 | cut -d'"' -f4)
+    if [ -n "$wurl" ]; then
       mkdir -p "$ROOT/chisel"
-      curl -sfL "https://github.com/jpillora/chisel/releases/download/v${cver}/chisel_${cver}_windows_amd64.gz" -o /tmp/ch.gz \
-        && gunzip -c /tmp/ch.gz > "$ROOT/chisel/chisel_windows_amd64.exe" && rm -f /tmp/ch.gz \
-        && echo "  [+] chisel v$cver" || echo "  [!] chisel" >&2
+      curl -sfL "$wurl" -o /tmp/ch.gz && gunzip -c /tmp/ch.gz > "$ROOT/chisel/chisel_windows_amd64.exe" && rm -f /tmp/ch.gz && echo "  [+] chisel" || echo "  [!] chisel" >&2
+    else
+      echo "  [!] chisel (no windows asset / API rate-limit)" >&2
     fi
-    # ligolo-ng windows agent + proxy (release zips)
+    # ligolo-ng windows agent + proxy
     lver=$(curl -s https://api.github.com/repos/nicocha30/ligolo-ng/releases/latest | grep '"tag_name"' | head -1 | cut -d'"' -f4); lver=${lver#v}
     if [ -n "$lver" ]; then
       mkdir -p "$ROOT/ligolo"
       base="https://github.com/nicocha30/ligolo-ng/releases/download/v${lver}"
-      curl -sfL "$base/ligolo-ng_agent_${lver}_windows_amd64.zip" -o /tmp/la.zip && unzip -oq /tmp/la.zip -d "$ROOT/ligolo" && rm -f /tmp/la.zip && echo "  [+] ligolo-agent v$lver" || echo "  [!] ligolo-agent" >&2
-      curl -sfL "$base/ligolo-ng_proxy_${lver}_windows_amd64.zip" -o /tmp/lp.zip && unzip -oq /tmp/lp.zip -d "$ROOT/ligolo" && rm -f /tmp/lp.zip && echo "  [+] ligolo-proxy v$lver" || echo "  [!] ligolo-proxy" >&2
+      curl -sfL "$base/ligolo-ng_agent_${lver}_windows_amd64.zip" -o /tmp/la.zip && unzip -oq /tmp/la.zip -d "$ROOT/ligolo" && rm -f /tmp/la.zip && echo "  [+] ligolo-agent" || echo "  [!] ligolo-agent" >&2
+      curl -sfL "$base/ligolo-ng_proxy_${lver}_windows_amd64.zip" -o /tmp/lp.zip && unzip -oq /tmp/lp.zip -d "$ROOT/ligolo" && rm -f /tmp/lp.zip && echo "  [+] ligolo-proxy" || echo "  [!] ligolo-proxy" >&2
     fi
     echo "sv-armory-network: done. List with: armory-network"
     ;;
