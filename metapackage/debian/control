@@ -8,6 +8,6 @@ Rules-Requires-Root: no
 
 Package: sv-tools-network
 Architecture: all
-Depends: svent-core (>= 0.4.4), sv-netcat (>= 0.1.1), sv-socat (>= 0.1.1), sv-tcpdump (>= 0.1.1), sv-tshark (>= 0.1.1), sv-bettercap (>= 0.1.1), sv-ettercap (>= 0.1.1), sv-sshuttle (>= 0.1.1), sv-iodine (>= 0.1.1), sv-macchanger (>= 0.1.1), sv-tcpflow (>= 0.1.1), sv-dsniff (>= 0.1.1), sv-chisel (>= 0.1.1), sv-ligolo-ng (>= 0.1.1), sv-pwncat (>= 0.1.3), sv-mitmproxy (>= 0.1.1), sv-penelope (>= 0.1.1), sv-armory-network (>= 1.2.1), ${misc:Depends}
+Depends: svent-core (>= 0.4.4), sv-netcat (>= 0.1.1), sv-socat (>= 0.1.1), sv-tcpdump (>= 0.1.1), sv-tshark (>= 0.1.1), sv-bettercap (>= 0.1.1), sv-ettercap (>= 0.1.1), sv-sshuttle (>= 0.1.1), sv-iodine (>= 0.1.1), sv-macchanger (>= 0.1.1), sv-tcpflow (>= 0.1.1), sv-dsniff (>= 0.1.1), sv-chisel (>= 0.1.1), sv-ligolo-ng (>= 0.1.1), sv-penelope (>= 0.1.1), sv-armory-network (>= 1.2.1), ${misc:Depends}
 Description: Complete Svent network tool group
  Installs every network tool and the Windows network utility collection.
