@@ -77,5 +77,11 @@
   ],
   "remove_build_packages": [
     "wheel"
-  ]
+  ],
+  "runtime_replacements": {
+    "packaging/tags.py": {
+      "import distutils.util\n": "",
+      "distutils.util.get_platform()": "sysconfig.get_platform()"
+    }
+  }
 }

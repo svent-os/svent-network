@@ -92,6 +92,23 @@ def notices():
     (BUILD / 'third-party-notices.json').write_text(json.dumps(records, indent=2) + '\n')
 
 
+def patch_runtime():
+    directories = list(ENVIRONMENT.glob('lib/python*/site-packages'))
+    if len(directories) != 1:
+        raise RuntimeError('Unexpected private Python package directory')
+    directory = directories[0].resolve()
+    for relative, replacements in META.get('runtime_replacements', {}).items():
+        path = (directory / relative).resolve()
+        if not path.is_relative_to(directory) or not path.is_file():
+            raise RuntimeError('Invalid runtime patch path')
+        content = path.read_text()
+        for old, new in replacements.items():
+            if old not in content:
+                raise RuntimeError('Runtime patch does not match: ' + relative)
+            content = content.replace(old, new)
+        path.write_text(content)
+
+
 def build():
     clean()
     BUILD.mkdir()
@@ -129,6 +146,7 @@ def build():
         pip('install', SOURCE, *META.get('requirements', []))
         for package in META.get('remove_build_packages', []):
             pip('uninstall', '--yes', package)
+        patch_runtime()
         pip('check')
         for command in META['commands']:
             smoke([ENVIRONMENT / 'bin/python', '-I', ENVIRONMENT / 'bin' / command, '--help'])
