@@ -1,3 +1,9 @@
+sv-tcpflow (0.1.1) unstable; urgency=medium
+
+  * Validate packaging, native commands and dependency isolation.
+
+ -- z1rov <fabian@zirov.net>  Sat, 10 Oct 2026 20:00:00 -0500
+
 sv-tcpflow (0.1.0) unstable; urgency=medium
 
   * Initial release.

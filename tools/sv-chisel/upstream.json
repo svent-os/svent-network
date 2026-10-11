@@ -1,0 +1,16 @@
+{
+  "package": "sv-chisel",
+  "kind": "go",
+  "version": "v1.12.0",
+  "archive_url": "https://codeload.github.com/jpillora/chisel/tar.gz/refs/tags/v1.12.0",
+  "sha256": "5c25f054b64814f770725593db525faa1999960aecf4eb15c86529dea573c431",
+  "commands": {
+    "chisel": "."
+  },
+  "license": "MIT",
+  "test_arguments": [
+    "--help"
+  ],
+  "toolchain": "go1.27.2",
+  "ldflags": "-s -w -X github.com/jpillora/chisel/share.BuildVersion=v1.12.0"
+}

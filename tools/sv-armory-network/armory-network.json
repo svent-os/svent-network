@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "resources": [
+    {
+      "category": "chisel",
+      "url": "https://github.com/jpillora/chisel/releases/download/v1.12.0/chisel_1.12.0_windows_amd64.zip",
+      "filename": "chisel_1.12.0_windows_amd64.zip",
+      "type": "zip",
+      "sha256": "600a8ad6f03bc7f6d285fd01ab6a3f8a657204adaafa5666ade9451d18df1ebc",
+      "size": 4873570,
+      "license": "MIT",
+      "official_source": "https://github.com/jpillora/chisel",
+      "members": [
+        {
+          "path": "chisel.exe",
+          "size": 11954176,
+          "sha256": "ca5f8e5247f1a044b8be45ef03187726b9af3ac30fd93fb5bb54144e34ed3738"
+        }
+      ]
+    },
+    {
+      "category": "ligolo",
+      "url": "https://github.com/nicocha30/ligolo-ng/releases/download/v0.9.2/ligolo-ng_agent_0.9.2_windows_amd64.zip",
+      "filename": "ligolo-ng_agent_0.9.2_windows_amd64.zip",
+      "type": "zip",
+      "sha256": "bf1e02df68f5bbae9fb8da65f423f0da1537381298730d943cc7dc2fa95cdd39",
+      "size": 3063723,
+      "license": "GPL-3.0-or-later",
+      "official_source": "https://github.com/nicocha30/ligolo-ng",
+      "members": [
+        {
+          "path": "agent.exe",
+          "size": 7374848,
+          "sha256": "1c7581cb54dab15b61cc8b5fee944d12f8cf96510f993637b91ce57aecbacaa0"
+        }
+      ]
+    },
+    {
+      "category": "ligolo",
+      "url": "https://github.com/nicocha30/ligolo-ng/releases/download/v0.9.2/ligolo-ng_proxy_0.9.2_windows_amd64.zip",
+      "filename": "ligolo-ng_proxy_0.9.2_windows_amd64.zip",
+      "type": "zip",
+      "sha256": "992d7186f7eed691cfd59332ff18b263bf390f4f6e631660c77bce0d2b94bb0b",
+      "size": 8034115,
+      "license": "GPL-3.0-or-later",
+      "official_source": "https://github.com/nicocha30/ligolo-ng",
+      "members": [
+        {
+          "path": "proxy.exe",
+          "size": 21371392,
+          "sha256": "1050d3113bf1a40c3417910aee929038146bd459d80c9fbd4822bd15eb0476f7"
+        }
+      ]
+    },
+    {
+      "category": "putty",
+      "url": "https://the.earth.li/~sgtatham/putty/0.85/w64/putty.exe",
+      "filename": "putty.exe",
+      "type": "file",
+      "sha256": "d01fdb5aae8f112526040a39b0bfb9e27d813003178645e65f8d1cfdb2a26c87",
+      "size": 1706136,
+      "license": "MIT",
+      "official_source": "https://www.chiark.greenend.org.uk/~sgtatham/putty/"
+    },
+    {
+      "category": "putty",
+      "url": "https://the.earth.li/~sgtatham/putty/0.85/w64/plink.exe",
+      "filename": "plink.exe",
+      "type": "file",
+      "sha256": "969f36879d5716aa1a9811f43a6a6510e8f08372dbeb9695b810b9c776f39c75",
+      "size": 1036448,
+      "license": "MIT",
+      "official_source": "https://www.chiark.greenend.org.uk/~sgtatham/putty/"
+    },
+    {
+      "category": "netcat",
+      "url": "https://raw.githubusercontent.com/int0x33/nc.exe/fa87aa42c460d34966efb998a1788efca6db11a7/nc.exe",
+      "filename": "nc.exe",
+      "type": "file",
+      "sha256": "e8fbec25db4f9d95b5e8f41cca51a4b32be8674a4dea7a45b6f7aeb22dbc38db",
+      "size": 38616,
+      "license": "Unverified binary provenance; download-only",
+      "official_source": "https://github.com/int0x33/nc.exe"
+    },
+    {
+      "category": "netcat",
+      "url": "https://raw.githubusercontent.com/int0x33/nc.exe/fa87aa42c460d34966efb998a1788efca6db11a7/nc64.exe",
+      "filename": "nc64.exe",
+      "type": "file",
+      "sha256": "3e59379f585ebf0becb6b4e06d0fbbf806de28a4bb256e837b4555f1b4245571",
+      "size": 45272,
+      "license": "Unverified binary provenance; download-only",
+      "official_source": "https://github.com/int0x33/nc.exe"
+    },
+    {
+      "category": "ligolo",
+      "url": "https://www.wintun.net/builds/wintun-0.14.1.zip",
+      "filename": "wintun-0.14.1.zip",
+      "type": "zip",
+      "size": 750540,
+      "sha256": "07c256185d6ee3652e09fa55c0b673e2624b565e02c4b9091c79ca7d2f24ef51",
+      "license": "Wintun binary distribution license; download-only",
+      "official_source": "https://www.wintun.net/",
+      "members": [
+        {
+          "path": "wintun/bin/amd64/wintun.dll",
+          "destination": "wintun.dll",
+          "size": 427552,
+          "sha256": "e5da8447dc2c320edc0fc52fa01885c103de8c118481f683643cacc3220dafce"
+        },
+        {
+          "path": "wintun/LICENSE.txt",
+          "destination": "wintun-license.txt",
+          "size": 5431,
+          "sha256": "183adac21e7d96c508c8fd34d394b7b6708bc81564ad1bad61ab66143a008cd2"
+        }
+      ]
+    }
+  ]
+}

@@ -11,3 +11,7 @@ tools/*/.venv/
 tools/*/.gem/
 tools/*/.src/
 *.asc
+tools/*/.build/
+*.deb.inputs.sha256
+*.deb.sha256
+*.debhelper.log

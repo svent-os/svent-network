@@ -1,1 +1,33 @@
-{"schema":1,"name":"dsniff","group":"network","description":"Sniffing/MITM toolset (arpspoof, dnsspoof, macof...)","packaging":"debian","package":"dsniff","executables":["dsniff"],"official_source":"https://www.monkey.org/~dugsong/dsniff","version_policy":"follow-debian-testing","functional_test":["dsniff","--version"],"functional_test_any_exit":true}
+{
+  "schema": 1,
+  "name": "dsniff",
+  "group": "network",
+  "description": "Network traffic analysis utilities",
+  "packaging": "debian",
+  "package": "sv-dsniff",
+  "executables": [
+    "arpspoof",
+    "dnsspoof",
+    "dsniff",
+    "filesnarf",
+    "macof",
+    "mailsnarf",
+    "msgsnarf",
+    "sshmitm",
+    "sshow",
+    "tcpkill",
+    "tcpnice",
+    "urlsnarf",
+    "webmitm",
+    "webspy"
+  ],
+  "official_source": "https://www.monkey.org/~dugsong/dsniff/",
+  "version_policy": "follow-debian-testing",
+  "functional_test": [
+    "dsniff",
+    "-h"
+  ],
+  "isolation": {
+    "kind": "system-apt"
+  }
+}

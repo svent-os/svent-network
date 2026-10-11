@@ -1,13 +1,13 @@
 Source: sv-sshuttle
-Section: metapackages
+Section: net
 Priority: optional
 Maintainer: z1rov <fabian@zirov.net>
-Build-Depends: debhelper-compat (= 13)
+Build-Depends: debhelper-compat (= 13), python3
 Standards-Version: 4.7.0
 Rules-Requires-Root: no
 
 Package: sv-sshuttle
 Architecture: all
-Depends: svent-core, sshuttle, ${misc:Depends}
-Description: Svent network tool: sshuttle
- Installs sshuttle and registers it in the Svent catalog and menu.
+Depends: svent-core (>= 0.4.4), sshuttle, ${misc:Depends}
+Description: Svent network tool: Transparent proxy over SSH
+ Installs the network tool with declared dependencies and native commands.

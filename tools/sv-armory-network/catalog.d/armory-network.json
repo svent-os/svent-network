@@ -1,1 +1,21 @@
-{"schema":1,"name":"armory-network","group":"network","description":"Windows pivoting/tunneling binaries to upload to targets (chisel, ligolo, nc, plink, putty)","packaging":"svent","package":"sv-armory-network","executables":["armory-network"],"official_source":"https://github.com/nicocha30/ligolo-ng","version_policy":"svent-packaged","functional_test":["armory-network","--help"],"functional_test_any_exit":true}
+{
+  "schema": 1,
+  "name": "armory-network",
+  "group": "network",
+  "description": "Verified Windows network utility collection",
+  "packaging": "svent",
+  "package": "sv-armory-network",
+  "executables": [
+    "armory-network"
+  ],
+  "official_source": "https://github.com/nicocha30/ligolo-ng",
+  "version_policy": "svent-packaged",
+  "functional_test": [
+    "armory-network",
+    "--help"
+  ],
+  "isolation": {
+    "kind": "downloaded-windows-files",
+    "prefix": "/usr/share/armory/network"
+  }
+}

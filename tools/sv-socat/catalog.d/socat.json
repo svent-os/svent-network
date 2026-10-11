@@ -1,1 +1,20 @@
-{"schema":1,"name":"socat","group":"network","description":"Multipurpose relay (SOcket CAT)","packaging":"debian","package":"socat","executables":["socat"],"official_source":"http://www.dest-unreach.org/socat","version_policy":"follow-debian-testing","functional_test":["socat","--version"],"functional_test_any_exit":true}
+{
+  "schema": 1,
+  "name": "socat",
+  "group": "network",
+  "description": "Multipurpose bidirectional data relay",
+  "packaging": "debian",
+  "package": "sv-socat",
+  "executables": [
+    "socat"
+  ],
+  "official_source": "https://www.dest-unreach.org/socat/",
+  "version_policy": "follow-debian-testing",
+  "functional_test": [
+    "socat",
+    "-V"
+  ],
+  "isolation": {
+    "kind": "system-apt"
+  }
+}

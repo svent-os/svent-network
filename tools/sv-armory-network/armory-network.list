@@ -1,4 +1,0 @@
-netcat https://github.com/int0x33/nc.exe/raw/master/nc64.exe nc64.exe
-netcat https://github.com/int0x33/nc.exe/raw/master/nc.exe nc.exe
-putty https://the.earth.li/~sgtatham/putty/latest/w64/plink.exe plink.exe
-putty https://the.earth.li/~sgtatham/putty/latest/w64/putty.exe putty.exe

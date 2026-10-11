@@ -1,1 +1,20 @@
-{"schema":1,"name":"tcpflow","group":"network","description":"TCP flow capture and reconstruction","packaging":"debian","package":"tcpflow","executables":["tcpflow"],"official_source":"https://github.com/simsong/tcpflow","version_policy":"follow-debian-testing","functional_test":["tcpflow","--version"],"functional_test_any_exit":true}
+{
+  "schema": 1,
+  "name": "tcpflow",
+  "group": "network",
+  "description": "TCP stream capture and reconstruction",
+  "packaging": "debian",
+  "package": "sv-tcpflow",
+  "executables": [
+    "tcpflow"
+  ],
+  "official_source": "https://github.com/simsong/tcpflow",
+  "version_policy": "follow-debian-testing",
+  "functional_test": [
+    "tcpflow",
+    "-V"
+  ],
+  "isolation": {
+    "kind": "system-apt"
+  }
+}

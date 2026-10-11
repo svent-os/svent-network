@@ -1,0 +1,23 @@
+#!/usr/bin/make -f
+%:
+	dh $@
+
+override_dh_auto_configure:
+
+override_dh_auto_build:
+	python3 debian/environment.py build
+
+override_dh_auto_test:
+
+override_dh_auto_install:
+	python3 debian/environment.py install $(CURDIR)/debian/sv-pwncat
+
+override_dh_auto_clean:
+	python3 debian/environment.py clean
+
+override_dh_shlibdeps:
+	python3 debian/environment.py shlibdeps
+
+override_dh_strip:
+
+override_dh_dwz:

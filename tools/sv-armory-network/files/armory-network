@@ -1,12 +1,149 @@
-#!/bin/sh
-ROOT=/usr/share/armory/network
-case "$1" in
-  -h|--help) echo "armory-network: lists the Windows pivoting binaries in $ROOT"; exit 0 ;;
-esac
-if [ ! -d "$ROOT" ] || [ -z "$(ls -A "$ROOT" 2>/dev/null)" ]; then
-  echo "Armory not downloaded. Run: sudo apt install --reinstall sv-armory-network" >&2
-  exit 1
-fi
-echo "Svent network armory (Windows pivoting binaries): $ROOT"
-echo
-find "$ROOT" -type f | sort | sed "s|$ROOT/|  |"
+#!/usr/bin/python3
+import argparse
+import hashlib
+import io
+import json
+import os
+import pathlib
+import shutil
+import sys
+import tempfile
+import urllib.request
+import zipfile
+
+
+ROOT = pathlib.Path('/usr/share/armory/network')
+MANIFEST = pathlib.Path('/usr/share/armory/armory-network.json')
+STATE = pathlib.Path('/var/lib/svent/armory-network/managed.json')
+
+
+def safe_path(relative):
+    if ROOT.is_symlink() or ROOT.parent.is_symlink():
+        raise RuntimeError('Collection directories cannot be symbolic links')
+    path = pathlib.PurePosixPath(relative)
+    if path.is_absolute() or '..' in path.parts or '\\' in relative or not path.parts:
+        raise RuntimeError('Invalid collection path: ' + relative)
+    target = ROOT.joinpath(*path.parts)
+    if not target.resolve().is_relative_to(ROOT.resolve()):
+        raise RuntimeError('Collection path escapes its directory')
+    return target
+
+
+def expected_files(entry):
+    if entry['type'] == 'zip':
+        return [(entry['category'] + '/' + item.get('destination', item['path']), item) for item in entry['members']]
+    return [(entry['category'] + '/' + entry['filename'], entry)]
+
+
+def valid(path, expected):
+    if not path.is_file() or path.is_symlink() or path.stat().st_size != expected['size']:
+        return False
+    return hashlib.sha256(path.read_bytes()).hexdigest() == expected['sha256']
+
+
+def fetch(entry):
+    if not entry['url'].startswith('https://'):
+        raise RuntimeError('Downloads require HTTPS')
+    request = urllib.request.Request(entry['url'], headers={'User-Agent': 'Svent-armory'})
+    last_error = None
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(request, timeout=120) as response:
+                if not response.url.startswith('https://'):
+                    raise RuntimeError('Insecure download redirect')
+                payload = response.read(entry['size'] + 1)
+            if len(payload) != entry['size'] or hashlib.sha256(payload).hexdigest() != entry['sha256']:
+                raise RuntimeError('Upstream checksum changed: ' + entry['filename'])
+            return payload
+        except (OSError, RuntimeError) as error:
+            last_error = error
+    raise RuntimeError('Download failed: ' + entry['filename']) from last_error
+
+
+def configure(entries):
+    if os.geteuid() != 0:
+        raise RuntimeError('Collection installation requires root')
+    ROOT.mkdir(parents=True, exist_ok=True)
+    replacements = []
+    with tempfile.TemporaryDirectory(prefix='.svent-armory-', dir=ROOT.parent) as directory:
+        staging = pathlib.Path(directory)
+        for entry in entries:
+            files = expected_files(entry)
+            if all(valid(safe_path(relative), metadata) for relative, metadata in files):
+                continue
+            if entry['type'] == 'bundled':
+                raise RuntimeError('Bundled file is missing or corrupt; reinstall sv-armory-network')
+            print('[+] Downloading ' + entry['category'] + '/' + entry['filename'], flush=True)
+            payload = fetch(entry)
+            if entry['type'] == 'zip':
+                with zipfile.ZipFile(io.BytesIO(payload)) as archive:
+                    for relative, metadata in files:
+                        info = archive.getinfo(metadata['path'])
+                        if info.file_size != metadata['size']:
+                            raise RuntimeError('Archive member size mismatch')
+                        data = archive.read(info)
+                        save(staging, relative, data, metadata, replacements)
+            else:
+                save(staging, files[0][0], payload, files[0][1], replacements)
+        for temporary, target in replacements:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            safe_path(target.relative_to(ROOT).as_posix())
+            os.replace(temporary, target)
+    check(entries)
+    STATE.parent.mkdir(parents=True, exist_ok=True)
+    temporary = STATE.with_suffix('.new')
+    temporary.write_text(json.dumps([{'path': relative, **metadata} for entry in entries
+                                    if entry['type'] != 'bundled'
+                                    for relative, metadata in expected_files(entry)], indent=2) + '\n')
+    temporary.chmod(0o644)
+    os.replace(temporary, STATE)
+    print('[+] Armory installation completed successfully.')
+
+
+def save(staging, relative, data, metadata, replacements):
+    target = safe_path(relative)
+    if len(data) != metadata['size'] or hashlib.sha256(data).hexdigest() != metadata['sha256']:
+        raise RuntimeError('Collection file checksum mismatch: ' + relative)
+    if target.suffix.lower() in ('.exe', '.dll', '.sys') and not data.startswith(b'MZ'):
+        raise RuntimeError('Unexpected Windows binary format: ' + relative)
+    temporary = staging / relative
+    temporary.parent.mkdir(parents=True, exist_ok=True)
+    temporary.write_bytes(data)
+    temporary.chmod(0o644)
+    replacements.append((temporary, target))
+
+
+def check(entries):
+    failed = [relative for entry in entries for relative, metadata in expected_files(entry)
+              if not valid(safe_path(relative), metadata)]
+    if failed:
+        raise RuntimeError('Missing or modified collection files: ' + ', '.join(failed))
+    print('[+] Collection checksums verified successfully.')
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Manage the Svent Windows assessment collection.')
+    parser.add_argument('--configure', action='store_true')
+    parser.add_argument('--check', action='store_true')
+    parser.add_argument('--path', action='store_true')
+    parser.add_argument('--list', action='store_true')
+    args = parser.parse_args()
+    entries = json.loads(MANIFEST.read_text())['resources']
+    if args.configure:
+        configure(entries)
+    elif args.check:
+        check(entries)
+    elif args.path:
+        print(ROOT)
+    else:
+        for entry in entries:
+            for relative, metadata in expected_files(entry):
+                print(str(safe_path(relative)))
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except (OSError, ValueError, RuntimeError, KeyError, zipfile.BadZipFile) as error:
+        print('[-] ' + str(error), file=sys.stderr)
+        raise SystemExit(1)

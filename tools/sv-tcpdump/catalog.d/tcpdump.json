@@ -1,1 +1,20 @@
-{"schema":1,"name":"tcpdump","group":"network","description":"Command-line packet analyzer","packaging":"debian","package":"tcpdump","executables":["tcpdump"],"official_source":"https://www.tcpdump.org","version_policy":"follow-debian-testing","functional_test":["tcpdump","--version"],"functional_test_any_exit":true}
+{
+  "schema": 1,
+  "name": "tcpdump",
+  "group": "network",
+  "description": "Command-line packet analyzer",
+  "packaging": "debian",
+  "package": "sv-tcpdump",
+  "executables": [
+    "tcpdump"
+  ],
+  "official_source": "https://www.tcpdump.org",
+  "version_policy": "follow-debian-testing",
+  "functional_test": [
+    "tcpdump",
+    "--version"
+  ],
+  "isolation": {
+    "kind": "system-apt"
+  }
+}

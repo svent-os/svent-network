@@ -1,1 +1,15 @@
 catalog.d/dsniff.json usr/share/svent/catalog.d/
+files/arpspoof usr/bin/
+files/dnsspoof usr/bin/
+files/dsniff usr/bin/
+files/filesnarf usr/bin/
+files/macof usr/bin/
+files/mailsnarf usr/bin/
+files/msgsnarf usr/bin/
+files/sshmitm usr/bin/
+files/sshow usr/bin/
+files/tcpkill usr/bin/
+files/tcpnice usr/bin/
+files/urlsnarf usr/bin/
+files/webmitm usr/bin/
+files/webspy usr/bin/

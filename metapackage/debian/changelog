@@ -1,3 +1,9 @@
+sv-tools-network (0.2.1) unstable; urgency=medium
+
+  * Require all network tools and the verified Windows collection.
+
+ -- z1rov <fabian@zirov.net>  Sat, 10 Oct 2026 20:00:00 -0500
+
 sv-tools-network (0.2.0) unstable; urgency=medium
 
   * Drop pwncat (blocked on Python 3.13); penelope covers shell handling.

@@ -1,13 +1,13 @@
 Source: sv-dsniff
-Section: metapackages
+Section: net
 Priority: optional
 Maintainer: z1rov <fabian@zirov.net>
-Build-Depends: debhelper-compat (= 13)
+Build-Depends: debhelper-compat (= 13), python3
 Standards-Version: 4.7.0
 Rules-Requires-Root: no
 
 Package: sv-dsniff
 Architecture: all
-Depends: svent-core, dsniff, ${misc:Depends}
-Description: Svent network tool: dsniff
- Installs dsniff and registers it in the Svent catalog and menu.
+Depends: svent-core (>= 0.4.4), dsniff, ${misc:Depends}
+Description: Svent network tool: Network traffic analysis utilities
+ Installs the network tool with declared dependencies and native commands.

@@ -1,8 +1,10 @@
 #!/usr/bin/make -f
-DESTDIR = $(CURDIR)/debian/sv-armory-network
 %:
 	dh $@
-override_dh_auto_install:
-	install -D -m755 files/armory-network $(DESTDIR)/usr/bin/armory-network
-	install -D -m644 armory-network.list $(DESTDIR)/usr/share/armory/network-manifest.list
-	install -D -m644 catalog.d/armory-network.json $(DESTDIR)/usr/share/svent/catalog.d/armory-network.json
+
+override_dh_auto_build:
+	python3 -c "import ast; ast.parse(open('files/armory-network').read())"
+
+override_dh_fixperms:
+	dh_fixperms
+	chmod 0755 debian/sv-armory-network/usr/bin/armory-network

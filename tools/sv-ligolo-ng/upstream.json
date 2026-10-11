@@ -1,0 +1,16 @@
+{
+  "package": "sv-ligolo-ng",
+  "kind": "go",
+  "version": "v0.9.2",
+  "archive_url": "https://codeload.github.com/nicocha30/ligolo-ng/tar.gz/refs/tags/v0.9.2",
+  "sha256": "e9d06817bf2e3e50e95e69310d67e7a2865feac0ed39eb76d693cc50350725f6",
+  "commands": {
+    "ligolo-proxy": "./cmd/proxy"
+  },
+  "license": "GPL-3.0-or-later",
+  "test_arguments": [
+    "--help"
+  ],
+  "toolchain": "go1.27.2",
+  "ldflags": "-s -w -X main.version=v0.9.2"
+}

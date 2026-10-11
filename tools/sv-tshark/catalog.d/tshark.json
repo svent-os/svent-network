@@ -1,1 +1,20 @@
-{"schema":1,"name":"tshark","group":"network","description":"Wireshark CLI network protocol analyzer","packaging":"debian","package":"tshark","executables":["tshark"],"official_source":"https://www.wireshark.org","version_policy":"follow-debian-testing","functional_test":["tshark","--version"],"functional_test_any_exit":true}
+{
+  "schema": 1,
+  "name": "tshark",
+  "group": "network",
+  "description": "Wireshark command-line protocol analyzer",
+  "packaging": "debian",
+  "package": "sv-tshark",
+  "executables": [
+    "tshark"
+  ],
+  "official_source": "https://www.wireshark.org",
+  "version_policy": "follow-debian-testing",
+  "functional_test": [
+    "tshark",
+    "--version"
+  ],
+  "isolation": {
+    "kind": "system-apt"
+  }
+}

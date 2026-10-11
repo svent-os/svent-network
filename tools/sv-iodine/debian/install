@@ -1,1 +1,3 @@
 catalog.d/iodine.json usr/share/svent/catalog.d/
+files/iodine usr/bin/
+files/iodined usr/bin/

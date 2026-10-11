@@ -1,13 +1,13 @@
 Source: sv-tcpflow
-Section: metapackages
+Section: net
 Priority: optional
 Maintainer: z1rov <fabian@zirov.net>
-Build-Depends: debhelper-compat (= 13)
+Build-Depends: debhelper-compat (= 13), python3
 Standards-Version: 4.7.0
 Rules-Requires-Root: no
 
 Package: sv-tcpflow
 Architecture: all
-Depends: svent-core, tcpflow, ${misc:Depends}
-Description: Svent network tool: tcpflow
- Installs tcpflow and registers it in the Svent catalog and menu.
+Depends: svent-core (>= 0.4.4), tcpflow, ${misc:Depends}
+Description: Svent network tool: TCP stream capture and reconstruction
+ Installs the network tool with declared dependencies and native commands.

@@ -2,12 +2,12 @@ Source: sv-penelope
 Section: net
 Priority: optional
 Maintainer: z1rov <fabian@zirov.net>
-Build-Depends: debhelper-compat (= 13), git, ca-certificates
+Build-Depends: debhelper-compat (= 13), python3, ca-certificates
 Standards-Version: 4.7.0
+Rules-Requires-Root: no
 
 Package: sv-penelope
 Architecture: all
-Depends: svent-core, python3, ${misc:Depends}
-Description: Svent network tool: penelope
- Vendored and isolated under /opt/sv-penelope so its dependencies never
- touch the system packages or other tools.
+Depends: svent-core (>= 0.4.4), ${shlibs:Depends}, ca-certificates, python3 (>= 3.6~), ${misc:Depends}
+Description: Svent network tool: Interactive shell handler
+ Installs the network tool with declared dependencies and native commands.

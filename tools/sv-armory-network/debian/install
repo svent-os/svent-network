@@ -1,0 +1,3 @@
+files/armory-network usr/bin/
+armory-network.json usr/share/armory/
+catalog.d/armory-network.json usr/share/svent/catalog.d/

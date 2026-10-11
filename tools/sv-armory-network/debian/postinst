@@ -1,35 +1,6 @@
 #!/bin/sh
-set -e
-ROOT=/usr/share/armory/network
-LIST=/usr/share/armory/network-manifest.list
-case "$1" in
-  configure)
-    mkdir -p "$ROOT"
-    echo "sv-armory-network: downloading Windows pivoting binaries into $ROOT ..."
-    while read -r sub url name; do
-      [ -z "$sub" ] && continue
-      case "$sub" in \#*) continue;; esac
-      mkdir -p "$ROOT/$sub"
-      curl -sfL "$url" -o "$ROOT/$sub/$name" && echo "  [+] $sub/$name" || echo "  [!] fail $sub/$name" >&2
-    done < "$LIST"
-    # chisel windows: el asset es .zip -> parsear URL real y descomprimir
-    wurl=$(curl -s https://api.github.com/repos/jpillora/chisel/releases/latest | grep browser_download_url | grep -iE 'windows_amd64\.zip' | head -1 | cut -d'"' -f4)
-    if [ -n "$wurl" ]; then
-      mkdir -p "$ROOT/chisel"
-      curl -sfL "$wurl" -o /tmp/ch.zip && unzip -oq /tmp/ch.zip -d "$ROOT/chisel" && rm -f /tmp/ch.zip && echo "  [+] chisel" || echo "  [!] chisel" >&2
-    else
-      echo "  [!] chisel (no windows asset / API rate-limit)" >&2
-    fi
-    # ligolo-ng windows agent + proxy
-    lver=$(curl -s https://api.github.com/repos/nicocha30/ligolo-ng/releases/latest | grep '"tag_name"' | head -1 | cut -d'"' -f4); lver=${lver#v}
-    if [ -n "$lver" ]; then
-      mkdir -p "$ROOT/ligolo"
-      base="https://github.com/nicocha30/ligolo-ng/releases/download/v${lver}"
-      curl -sfL "$base/ligolo-ng_agent_${lver}_windows_amd64.zip" -o /tmp/la.zip && unzip -oq /tmp/la.zip -d "$ROOT/ligolo" && rm -f /tmp/la.zip && echo "  [+] ligolo-agent" || echo "  [!] ligolo-agent" >&2
-      curl -sfL "$base/ligolo-ng_proxy_${lver}_windows_amd64.zip" -o /tmp/lp.zip && unzip -oq /tmp/lp.zip -d "$ROOT/ligolo" && rm -f /tmp/lp.zip && echo "  [+] ligolo-proxy" || echo "  [!] ligolo-proxy" >&2
-    fi
-    echo "sv-armory-network: done. List with: armory-network"
-    ;;
-esac
+set -eu
+if [ "$1" = configure ]; then
+    /usr/bin/armory-network --configure
+fi
 #DEBHELPER#
-exit 0

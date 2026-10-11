@@ -1,0 +1,78 @@
+{
+  "package": "sv-pwncat",
+  "kind": "python",
+  "version": "v0.5.4",
+  "archive_url": "https://codeload.github.com/calebstewart/pwncat/tar.gz/refs/tags/v0.5.4",
+  "sha256": "718522160e94b92771a2c71e4bdc72499b3385d5229871fea52808477c67663c",
+  "commands": {
+    "pwncat-cs": "bin/pwncat-cs"
+  },
+  "license": "MIT",
+  "test_arguments": [
+    "--help"
+  ],
+  "build_pins": {
+    "pip": "26.2.1",
+    "setuptools": "80.9.0",
+    "wheel": "0.48.0"
+  },
+  "source_replacements": {
+    "pwncat/modules/linux/enumerate/escalate/append_passwd.py": {
+      "import crypt\n": "import legacycrypt as crypt\n"
+    },
+    "pwncat/modules/linux/implant/passwd.py": {
+      "import crypt\n": "import legacycrypt as crypt\n"
+    },
+    "pyproject.toml": {
+      "requires = [\"poetry-core>=1.0.0\"]": "requires = [\"poetry-core==2.5.0\"]"
+    }
+  },
+  "requirements": [
+    "legacycrypt==0.3"
+  ],
+  "constraints": [
+    "bcrypt==5.0.0",
+    "BTrees==6.5",
+    "certifi==2026.7.22",
+    "cffi==2.1.1",
+    "charset-normalizer==3.5.2",
+    "colorama==0.4.6",
+    "commonmark==0.9.2",
+    "cryptography==50.0.2",
+    "idna==3.20",
+    "Jinja2==3.1.6",
+    "MarkupSafe==3.0.4",
+    "netifaces==0.11.0",
+    "packaging==20.9",
+    "paramiko-ng==2.9.0",
+    "persistent==6.8",
+    "prompt_toolkit==3.0.53",
+    "pycparser==3.11",
+    "pycryptodome==3.24.0",
+    "Pygments==2.21.0",
+    "PyNaCl==1.6.2",
+    "pyparsing==3.3.3",
+    "python-rapidjson==1.25",
+    "requests==2.34.2",
+    "rich==10.16.2",
+    "setuptools==80.9.0",
+    "transaction==5.1",
+    "urllib3==2.8.0",
+    "wcwidth==0.9.2",
+    "zc.lockfile==4.0",
+    "ZConfig==4.3",
+    "zdaemon==5.2.1",
+    "ZEO==6.2",
+    "ZODB3==3.11.0",
+    "ZODB==6.3",
+    "zodbpickle==4.5",
+    "zodburi==2.6.0",
+    "zope.deferredimport==6.1.1",
+    "zope.interface==8.6",
+    "zope.proxy==7.3"
+  ],
+  "import_checks": [
+    "pwncat.modules.linux.enumerate.escalate.append_passwd",
+    "pwncat.modules.linux.implant.passwd"
+  ]
+}

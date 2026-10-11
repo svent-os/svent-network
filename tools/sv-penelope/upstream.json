@@ -1,0 +1,14 @@
+{
+  "package": "sv-penelope",
+  "kind": "standalone",
+  "version": "v0.21.0",
+  "archive_url": "https://codeload.github.com/brightio/penelope/tar.gz/refs/tags/v0.21.0",
+  "sha256": "6356f2504fe28ae6f7a93ac2377e0734b0eb5f019b23a0a6360d42ef4308a7e1",
+  "commands": {
+    "penelope": "penelope.py"
+  },
+  "license": "GPL-3.0-or-later",
+  "test_arguments": [
+    "--help"
+  ]
+}

@@ -2,12 +2,12 @@ Source: sv-ligolo-ng
 Section: net
 Priority: optional
 Maintainer: z1rov <fabian@zirov.net>
-Build-Depends: debhelper-compat (= 13)
+Build-Depends: debhelper-compat (= 13), python3, ca-certificates, golang-go, git
 Standards-Version: 4.7.0
 Rules-Requires-Root: no
 
 Package: sv-ligolo-ng
-Architecture: amd64
-Depends: svent-core, ${shlibs:Depends}, ${misc:Depends}
-Description: Svent network tool: ligolo-ng
- Built from upstream source.
+Architecture: any
+Depends: svent-core (>= 0.4.4), ${shlibs:Depends}, ca-certificates, ${misc:Depends}
+Description: Svent network tool: Ligolo-ng tunneling proxy
+ Installs the network tool with declared dependencies and native commands.
