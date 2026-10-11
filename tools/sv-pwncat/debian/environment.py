@@ -127,6 +127,8 @@ def build():
         constraints.write_text('setuptools==' + pins['setuptools'] + '\n' + '\n'.join(META.get('constraints', [])) + '\n')
         ENV['PIP_CONSTRAINT'] = str(constraints)
         pip('install', SOURCE, *META.get('requirements', []))
+        for package in META.get('remove_build_packages', []):
+            pip('uninstall', '--yes', package)
         pip('check')
         for command in META['commands']:
             smoke([ENVIRONMENT / 'bin/python', '-I', ENVIRONMENT / 'bin' / command, '--help'])

@@ -74,5 +74,8 @@
   "import_checks": [
     "pwncat.modules.linux.enumerate.escalate.append_passwd",
     "pwncat.modules.linux.implant.passwd"
+  ],
+  "remove_build_packages": [
+    "wheel"
   ]
 }
