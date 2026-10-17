@@ -9,5 +9,5 @@ Rules-Requires-Root: no
 Package: sv-armory-network
 Architecture: all
 Depends: svent-core (>= 0.4.4), python3, ca-certificates, ${misc:Depends}
-Description: Svent network tool: Verified Windows network utility collection
+Description: Svent network tool: Windows network utility collection
  Installs the network tool with declared dependencies and native commands.

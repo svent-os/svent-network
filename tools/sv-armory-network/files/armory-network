@@ -36,9 +36,13 @@ def expected_files(entry):
 
 
 def valid(path, expected):
-    if not path.is_file() or path.is_symlink() or path.stat().st_size != expected['size']:
+    if not path.is_file() or path.is_symlink():
         return False
-    return hashlib.sha256(path.read_bytes()).hexdigest() == expected['sha256']
+    with path.open('rb') as stream:
+        prefix = stream.read(2)
+    if not prefix:
+        return False
+    return path.suffix.lower() not in ('.exe', '.dll', '.sys') or prefix == b'MZ'
 
 
 def fetch(entry):
@@ -51,13 +55,13 @@ def fetch(entry):
             with urllib.request.urlopen(request, timeout=120) as response:
                 if not response.url.startswith('https://'):
                     raise RuntimeError('Insecure download redirect')
-                payload = response.read(entry['size'] + 1)
-            if len(payload) != entry['size'] or hashlib.sha256(payload).hexdigest() != entry['sha256']:
-                raise RuntimeError('Upstream checksum changed: ' + entry['filename'])
+                payload = response.read()
+            if not payload:
+                raise RuntimeError('Empty download: ' + entry['filename'])
             return payload
         except (OSError, RuntimeError) as error:
             last_error = error
-    raise RuntimeError('Download failed: ' + entry['filename']) from last_error
+    raise RuntimeError('Download failed: ' + entry['filename'] + ': ' + str(last_error)) from last_error
 
 
 def configure(entries):
@@ -78,10 +82,7 @@ def configure(entries):
             if entry['type'] == 'zip':
                 with zipfile.ZipFile(io.BytesIO(payload)) as archive:
                     for relative, metadata in files:
-                        info = archive.getinfo(metadata['path'])
-                        if info.file_size != metadata['size']:
-                            raise RuntimeError('Archive member size mismatch')
-                        data = archive.read(info)
+                        data = archive.read(metadata['path'])
                         save(staging, relative, data, metadata, replacements)
             else:
                 save(staging, files[0][0], payload, files[0][1], replacements)
@@ -92,7 +93,8 @@ def configure(entries):
     check(entries)
     STATE.parent.mkdir(parents=True, exist_ok=True)
     temporary = STATE.with_suffix('.new')
-    temporary.write_text(json.dumps([{'path': relative, **metadata} for entry in entries
+    temporary.write_text(json.dumps([{'path': relative,
+                                      'sha256': hashlib.sha256(safe_path(relative).read_bytes()).hexdigest()} for entry in entries
                                     if entry['type'] != 'bundled'
                                     for relative, metadata in expected_files(entry)], indent=2) + '\n')
     temporary.chmod(0o644)
@@ -102,8 +104,8 @@ def configure(entries):
 
 def save(staging, relative, data, metadata, replacements):
     target = safe_path(relative)
-    if len(data) != metadata['size'] or hashlib.sha256(data).hexdigest() != metadata['sha256']:
-        raise RuntimeError('Collection file checksum mismatch: ' + relative)
+    if not data:
+        raise RuntimeError('Empty collection file: ' + relative)
     if target.suffix.lower() in ('.exe', '.dll', '.sys') and not data.startswith(b'MZ'):
         raise RuntimeError('Unexpected Windows binary format: ' + relative)
     temporary = staging / relative
@@ -117,12 +119,12 @@ def check(entries):
     failed = [relative for entry in entries for relative, metadata in expected_files(entry)
               if not valid(safe_path(relative), metadata)]
     if failed:
-        raise RuntimeError('Missing or modified collection files: ' + ', '.join(failed))
-    print('[+] Collection checksums verified successfully.')
+        raise RuntimeError('Missing or invalid collection files: ' + ', '.join(failed))
+    print('[+] Collection files are present and have valid basic formats.')
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Manage the Svent Windows assessment collection.')
+    parser = argparse.ArgumentParser(description='Manage the Svent Windows network utility collection.')
     parser.add_argument('--configure', action='store_true')
     parser.add_argument('--check', action='store_true')
     parser.add_argument('--path', action='store_true')

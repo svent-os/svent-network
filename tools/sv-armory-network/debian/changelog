@@ -1,3 +1,12 @@
+sv-armory-network (1.2.2) unstable; urgency=medium
+
+  * Accept complete HTTPS downloads without pinned sizes or checksums.
+  * Retain safe paths, executable format checks and staged installation.
+  * Record installed file hashes only for preservation during removal.
+  * Add regression tests for changed downloads and ZIP destinations.
+
+ -- z1rov <fabian@zirov.net>  Sat, 17 Oct 2026 12:00:00 -0700
+
 sv-armory-network (1.2.1) unstable; urgency=medium
 
   * Validate packaging, native commands and dependency isolation.

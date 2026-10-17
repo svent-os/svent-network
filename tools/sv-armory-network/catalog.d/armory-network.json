@@ -2,7 +2,7 @@
   "schema": 1,
   "name": "armory-network",
   "group": "network",
-  "description": "Verified Windows network utility collection",
+  "description": "Windows network utility collection",
   "packaging": "svent",
   "package": "sv-armory-network",
   "executables": [
